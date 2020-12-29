@@ -1,7 +1,6 @@
 package com.jh.simple_blog.domain.posts;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 
 import java.time.LocalDateTime;
 import java.util.List;
