@@ -1,5 +1,10 @@
 package com.jh.simple_blog.web;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
+import com.jh.simple_blog.config.auth.LoginUser;
+import com.jh.simple_blog.config.auth.dto.SessionUser;
 import com.jh.simple_blog.service.posts.PostsService;
 import com.jh.simple_blog.web.dto.PostsResponseDto;
 
@@ -14,11 +19,14 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class IndexController {
 	private final PostsService postsService;
-
 	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(Model model, @LoginUser SessionUser user) {
 		model.addAttribute("posts", postsService.findAllDesc());
+
+		if(user !=null)
+			model.addAttribute("usrName", user.getName());
+
 		return "index";
 	}
 
