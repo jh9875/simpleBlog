@@ -1,8 +1,5 @@
 package com.jh.simple_blog.web;
 
-import javax.mail.Session;
-import javax.servlet.http.HttpSession;
-
 import com.jh.simple_blog.config.auth.LoginUser;
 import com.jh.simple_blog.config.auth.dto.SessionUser;
 import com.jh.simple_blog.service.posts.PostsService;
