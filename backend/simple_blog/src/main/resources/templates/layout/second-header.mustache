@@ -1,0 +1,18 @@
+<!-- 로고 및 개인 영역 -->
+	<div class="row">
+		<div class="col-md-6">
+			<a href ="/"> <img src ="/image/simpleBlog.png"> </a>
+		</div>
+		
+		<div class="col-md-6">
+			{{#usrName}}
+				<a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+				Logged in as: <span id="user">{{usrName}}</span>
+				<a href="/logout" class="btn btn-info active" role="button">Logout</a>
+			{{/usrName}}
+			{{^usrName}}
+				<a href="/login/with" role="button" class="btn btn-info active">로그인</a>
+            {{/usrName}}
+        </div>
+    </div>
+	<br><br><br>
