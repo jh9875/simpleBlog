@@ -22,22 +22,16 @@ public class IndexController {
 		model.addAttribute("posts", postsService.findAllDesc());
 
 		if(user !=null)
-			model.addAttribute("usrName", user.getName());
+			model.addAttribute("usr", user);
 			
 		return "index";
-	}
-
-	@GetMapping("/login/with")
-	public String login() {
-
-		return "login-with";
 	}
 
 	@GetMapping("/posts/save")
 	public String postsSave(Model model, @LoginUser SessionUser user) {
 		
 		if(user !=null)
-			model.addAttribute("usrName", user.getName());
+			model.addAttribute("usr", user);
 
 		return "posts-save";
 	}
@@ -48,8 +42,14 @@ public class IndexController {
 		model.addAttribute("post", dto);
 		
 		if(user !=null)
-			model.addAttribute("usrName", user.getName());
+			model.addAttribute("usr", user);
 
         return "posts-update";
-    }
+	}
+	
+	@GetMapping("/login/with")
+	public String login() {
+
+		return "login-with";
+	}
 }

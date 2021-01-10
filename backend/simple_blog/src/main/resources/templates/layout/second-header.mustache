@@ -5,14 +5,14 @@
 		</div>
 		
 		<div class="col-md-6">
-			{{#usrName}}
+			{{#usr}}
 				<a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-				Logged in as: <span id="user">{{usrName}}</span>
+				Logged in as: <span id="user">{{usr.name}}</span>
 				<a href="/logout" class="btn btn-info active" role="button">Logout</a>
-			{{/usrName}}
-			{{^usrName}}
+			{{/usr}}
+			{{^usr}}
 				<a href="/login/with" role="button" class="btn btn-info active">로그인</a>
-            {{/usrName}}
+            {{/usr}}
         </div>
     </div>
 	<br><br><br>

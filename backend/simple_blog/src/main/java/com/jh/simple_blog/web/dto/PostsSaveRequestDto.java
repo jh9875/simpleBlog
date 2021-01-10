@@ -1,6 +1,7 @@
 package com.jh.simple_blog.web.dto;
 
 import com.jh.simple_blog.domain.posts.Posts;
+import com.jh.simple_blog.domain.user.User;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -11,16 +12,21 @@ import lombok.NoArgsConstructor;
 public class PostsSaveRequestDto {
 	private String title;
 	private String content;
-	private String author;
+	private String email;
+	private User user;
 
 	@Builder
-	public PostsSaveRequestDto(String title, String content, String author) {
+	public PostsSaveRequestDto(String title, String content, String email) {
 		this.title = title;
 		this.content = content;
-		this.author = author;
+		this.email =email;
+	}
+
+	public void setUser(User user) {
+		this.user =user;
 	}
 
 	public Posts toEntity() {
-		return Posts.builder().title(title).content(content).author(author).build();
+		return Posts.builder().title(title).content(content).user(user).build();
 	}
 }

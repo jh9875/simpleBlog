@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.posts.PostsRepository;
+import com.jh.simple_blog.domain.user.User;
+import com.jh.simple_blog.domain.user.UserRepository;
 import com.jh.simple_blog.web.dto.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.PostsResponseDto;
 import com.jh.simple_blog.web.dto.PostsSaveRequestDto;
@@ -19,9 +21,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class PostsService {
 	private final PostsRepository postsRepository;
+	private final UserRepository userRepository;
 
 	@Transactional
 	public Long save(PostsSaveRequestDto requestDto) {
+		User userEntity =userRepository.findByEmail(requestDto.getEmail())
+			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + requestDto.getEmail()));
+		requestDto.setUser(userEntity);
+
 		return postsRepository.save(requestDto.toEntity()).getId();
 	}
 
@@ -53,7 +60,7 @@ public class PostsService {
 	@Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+			.map(PostsListResponseDto::new)
+			.collect(Collectors.toList());
     }
 }

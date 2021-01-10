@@ -1,6 +1,7 @@
 package com.jh.simple_blog.web.dto;
 
 import com.jh.simple_blog.domain.posts.Posts;
+import com.jh.simple_blog.domain.user.User;
 
 import lombok.Getter;
 
@@ -9,13 +10,13 @@ public class PostsResponseDto {
 	private Long id;
 	private String title;
 	private String content;
-	private String author;
+	private User user;
 
 	public PostsResponseDto(Posts entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.content = entity.getContent();
-		this.author = entity.getAuthor();
+		this.user =entity.getUser();
 	}
 
 }
