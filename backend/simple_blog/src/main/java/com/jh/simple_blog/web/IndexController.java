@@ -1,8 +1,11 @@
 package com.jh.simple_blog.web;
 
+import java.util.List;
+
 import com.jh.simple_blog.config.auth.LoginUser;
 import com.jh.simple_blog.config.auth.dto.SessionUser;
 import com.jh.simple_blog.service.posts.PostsService;
+import com.jh.simple_blog.web.dto.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.PostsResponseDto;
 
 import org.springframework.stereotype.Controller;
@@ -38,13 +41,24 @@ public class IndexController {
 
 	@GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
-        PostsResponseDto dto = postsService.findById(id);
+		PostsResponseDto dto = postsService.findById(id);
 		model.addAttribute("post", dto);
 		
 		if(user !=null)
 			model.addAttribute("usr", user);
 
         return "posts-update";
+	}
+
+	@GetMapping("/user")
+	public String user(Model model, @LoginUser SessionUser user) {
+		List<PostsListResponseDto> userPosts =postsService.findByUser(user.getEmail());
+		model.addAttribute("userPosts", userPosts);
+
+		if(user !=null)
+			model.addAttribute("usr", user);
+
+		return "user";
 	}
 	
 	@GetMapping("/login/with")

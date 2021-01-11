@@ -1,11 +1,10 @@
 {{>layout/header}}
 {{>layout/second-header}}
 	
-	<h1> 전체 글 </h1>
+	<h1>{{usr.name}} 님의 글</h1>
 
 	<div class="col-md-12">
         
-        <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
             <thead class="thead-strong">
             <tr>
@@ -16,14 +15,15 @@
             </tr>
             </thead>
             <tbody id="tbody">
-            {{#posts}}
+            {{#userPosts}}
                 <tr>
                     <td>{{id}}</td>
-                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <!-- <td><a href="/userPosts/update/{{id}}">{{title}}</a></td> -->
+					<td>{{title}}</td>
                     <td>{{user.email}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
-            {{/posts}}
+            {{/userPosts}}
             </tbody>
         </table>
     </div>

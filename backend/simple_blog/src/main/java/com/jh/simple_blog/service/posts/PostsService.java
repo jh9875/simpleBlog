@@ -25,9 +25,9 @@ public class PostsService {
 
 	@Transactional
 	public Long save(PostsSaveRequestDto requestDto) {
-		User userEntity =userRepository.findByEmail(requestDto.getEmail())
+		User user =userRepository.findByEmail(requestDto.getEmail())
 			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + requestDto.getEmail()));
-		requestDto.setUser(userEntity);
+		requestDto.setUser(user);
 
 		return postsRepository.save(requestDto.toEntity()).getId();
 	}
@@ -62,5 +62,15 @@ public class PostsService {
         return postsRepository.findAllDesc().stream()
 			.map(PostsListResponseDto::new)
 			.collect(Collectors.toList());
-    }
+	}
+	
+	@Transactional(readOnly = true)
+	public List<PostsListResponseDto> findByUser(String email) {
+		User user =userRepository.findByEmail(email)
+			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + email));
+		
+		return postsRepository.findByUser(user).stream()
+			.map(PostsListResponseDto::new)
+			.collect(Collectors.toList());
+	}
 }

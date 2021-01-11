@@ -7,7 +7,7 @@
 		<div class="col-md-6">
 			{{#usr}}
 				<a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-				Logged in as: <span id="user">{{usr.name}}</span>
+				Logged in as: <span id="user"><a href="/user">{{usr.name}}</a></span>
 				<a href="/logout" class="btn btn-info active" role="button">Logout</a>
 			{{/usr}}
 			{{^usr}}
