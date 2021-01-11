@@ -1,18 +1,33 @@
 <!-- 로고 및 개인 영역 -->
-	<div class="row">
-		<div class="col-md-6">
-			<a href ="/"> <img src ="/image/simpleBlog.png"> </a>
-		</div>
+	<div class ="container-fluid">
+		<div class="row">
+			<!-- 로고 -->
+			<div class="col-9">
+				<a href ="/"> <img src ="/image/simpleBlog.png"> </a>
+			</div>
 		
-		<div class="col-md-6">
-			{{#usr}}
-				<a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-				Logged in as: <span id="user"><a href="/user">{{usr.name}}</a></span>
-				<a href="/logout" class="btn btn-info active" role="button">Logout</a>
-			{{/usr}}
-			{{^usr}}
-				<a href="/login/with" role="button" class="btn btn-info active">로그인</a>
-            {{/usr}}
-        </div>
-    </div>
+			<!-- 사용자 정보 -->
+			<div class="col-1">
+				<div class="float-right">
+					{{#usr}}
+						<span id="user">
+							<div class="dropdown">
+    							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      								{{usr.name}}</span>
+    							</button>
+    							<div class="dropdown-menu">
+      								<a class="dropdown-item" href="/user">유저 홈</a>
+									<a class="dropdown-item" href="/posts/save">글 등록</a>
+									<a class="dropdown-item" href="/user/setting">설정</a>
+      								<a class="dropdown-item" href="/logout">로그아웃</a>
+    							</div>
+							</div>
+					{{/usr}}
+					{{^usr}}
+						<a href="/login/with" role="button" class="btn btn-info active">로그인</a>
+         	 	  {{/usr}}
+      			</div>
+			</div>
+		</div>
+	</div>
 	<br><br><br>
