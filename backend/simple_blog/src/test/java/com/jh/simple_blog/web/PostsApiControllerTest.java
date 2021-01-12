@@ -1,6 +1,7 @@
 package com.jh.simple_blog.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -11,8 +12,8 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.posts.PostsRepository;
-import com.jh.simple_blog.web.dto.PostsSaveRequestDto;
-import com.jh.simple_blog.web.dto.PostsUpdateRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsSaveRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsUpdateRequestDto;
 
 import org.junit.After;
 import org.junit.Before;

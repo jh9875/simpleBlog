@@ -7,10 +7,10 @@ import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.posts.PostsRepository;
 import com.jh.simple_blog.domain.user.User;
 import com.jh.simple_blog.domain.user.UserRepository;
-import com.jh.simple_blog.web.dto.PostsListResponseDto;
-import com.jh.simple_blog.web.dto.PostsResponseDto;
-import com.jh.simple_blog.web.dto.PostsSaveRequestDto;
-import com.jh.simple_blog.web.dto.PostsUpdateRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
+import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
+import com.jh.simple_blog.web.dto.posts.PostsSaveRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsUpdateRequestDto;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

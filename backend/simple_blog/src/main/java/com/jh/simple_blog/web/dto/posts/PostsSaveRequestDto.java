@@ -1,4 +1,4 @@
-package com.jh.simple_blog.web.dto;
+package com.jh.simple_blog.web.dto.posts;
 
 import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.user.User;

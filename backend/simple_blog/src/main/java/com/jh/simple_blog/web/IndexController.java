@@ -5,8 +5,10 @@ import java.util.List;
 import com.jh.simple_blog.config.auth.LoginUser;
 import com.jh.simple_blog.config.auth.dto.SessionUser;
 import com.jh.simple_blog.service.posts.PostsService;
-import com.jh.simple_blog.web.dto.PostsListResponseDto;
-import com.jh.simple_blog.web.dto.PostsResponseDto;
+import com.jh.simple_blog.service.user.UserService;
+import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
+import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
+import com.jh.simple_blog.web.dto.user.UserResponseDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,22 +22,23 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class IndexController {
 	private final PostsService postsService;
+	private final UserService userService;
 	
 	@GetMapping("/")
-	public String index(Model model, @LoginUser SessionUser user) {
+	public String index(Model model, @LoginUser SessionUser user) {	
 		model.addAttribute("posts", postsService.findAllDesc());
 
 		if(user !=null)
-			model.addAttribute("usr", user);
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
+			
 			
 		return "index";
 	}
 
 	@GetMapping("/posts/save")
 	public String postsSave(Model model, @LoginUser SessionUser user) {
-		
 		if(user !=null)
-			model.addAttribute("usr", user);
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
 		return "posts-save";
 	}
@@ -46,7 +49,7 @@ public class IndexController {
 		model.addAttribute("post", dto);
 		
 		if(user !=null)
-			model.addAttribute("usr", user);
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
         return "posts-update";
 	}
@@ -57,14 +60,21 @@ public class IndexController {
 		model.addAttribute("userPosts", userPosts);
 
 		if(user !=null)
-			model.addAttribute("usr", user);
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
 		return "user";
+	}
+
+	@GetMapping("user/setting")
+	public String setting(Model model, @LoginUser SessionUser user) {
+		if(user !=null)
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
+
+		return "user-setting";
 	}
 	
 	@GetMapping("/sign/in")
 	public String signin() {
-
 		return "sign-in";
 	}
 

@@ -3,10 +3,10 @@ package com.jh.simple_blog.web;
 import java.util.List;
 
 import com.jh.simple_blog.service.posts.PostsService;
-import com.jh.simple_blog.web.dto.PostsListResponseDto;
-import com.jh.simple_blog.web.dto.PostsResponseDto;
-import com.jh.simple_blog.web.dto.PostsSaveRequestDto;
-import com.jh.simple_blog.web.dto.PostsUpdateRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
+import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
+import com.jh.simple_blog.web.dto.posts.PostsSaveRequestDto;
+import com.jh.simple_blog.web.dto.posts.PostsUpdateRequestDto;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,0 +1,29 @@
+{{>layout/header}}
+{{>layout/second-header}}
+
+<div class="col-md-12">
+	<h1>USER SETTING</h1>
+
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" value="{{usr.name}}">
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="text" class="form-control" id="email" value="{{usr.email}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="picture"> 사진 </label> <br>
+                <img id="picture" src={{usr.picture}} ></img>
+            </div>
+        </form>
+        <a href="/user" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-user-update">수정 완료</button>
+        {{! <button type="button" class="btn btn-danger" id="btn-user-delete" onClick="location.href='/logout'">탈퇴</button> }}
+    </div>
+</div>
+
+
+{{>layout/footer}}

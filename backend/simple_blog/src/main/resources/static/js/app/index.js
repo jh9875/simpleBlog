@@ -1,19 +1,27 @@
 var main = {
     init : function () {
         var _this = this;
-        $('#btn-save').on('click', function () {
-            _this.save();
+        $('#btn-posts-save').on('click', function () {
+            _this.postsSave();
         });
 
-        $('#btn-update').on('click', function () {
-            _this.update();
+        $('#btn-posts-update').on('click', function () {
+            _this.postsUpdate();
         });
 
-        $('#btn-delete').on('click', function () {
-            _this.delete();
-        });
+        $('#btn-posts-delete').on('click', function () {
+            _this.postsDelete();
+		});
+		
+		$('#btn-user-update').on('click', function () {
+			_this.userUpdate();
+		});
+		
+		$('#btn-user-delete').on('click', function () {
+			_this.userDelete();
+		});
     },
-    save : function () {
+    postsSave : function () {
         var data = {
             title: $('#title').val(),
 			content: $('#content').val(),
@@ -33,7 +41,7 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
-    update : function () {
+    postsUpdate : function () {
         var data = {
             title: $('#title').val(),
             content: $('#content').val()
@@ -54,7 +62,7 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
-    delete : function () {
+    postsDelete : function () {
         var id = $('#id').val();
 
         $.ajax({
@@ -68,7 +76,44 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    }
+	},
+	
+	userUpdate : function () {
+		var data = {
+            name: $('#name').val(),
+			email: $('#email').val(),
+			picture: jQuery("#picture").attr("src")
+		};
+		
+		$.ajax({
+            type: 'PUT',
+            url: '/api/v1/user/setting',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('유저가 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+	},
+
+	// userDelete : function () {
+	// 	var email = $('#email').val();
+
+	// 	$.ajax({
+    //         type: 'DELETE',
+    //         url: '/api/v1/user/setting' +email,
+    //         dataType: 'json',
+    //         contentType:'application/json; charset=utf-8'
+    //     }).done(function() {
+    //         alert('유저가 삭제되었습니다.');
+    //         window.location.href = '/';
+    //     }).fail(function (error) {
+    //         alert(JSON.stringify(error));
+    //     });
+	// }
 
 };
 

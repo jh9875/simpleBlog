@@ -1,6 +1,7 @@
 {{>layout/header}}
 {{>layout/second-header}}
 	
+	<div class="container">
 	<h1>{{usr.name}} 님의 글</h1>
 
 	<div class="col-md-12">
@@ -18,8 +19,7 @@
             {{#userPosts}}
                 <tr>
                     <td>{{id}}</td>
-                    <!-- <td><a href="/userPosts/update/{{id}}">{{title}}</a></td> -->
-					<td>{{title}}</td>
+                    <td><a href="/userPosts/update/{{id}}">{{title}}</a></td>
                     <td>{{user.email}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
@@ -27,4 +27,5 @@
             </tbody>
         </table>
     </div>
+	</div>
 {{>layout/footer}}

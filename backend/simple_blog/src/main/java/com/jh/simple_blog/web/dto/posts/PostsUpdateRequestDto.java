@@ -1,4 +1,4 @@
-package com.jh.simple_blog.web.dto;
+package com.jh.simple_blog.web.dto.posts;
 
 import lombok.Builder;
 import lombok.Getter;
