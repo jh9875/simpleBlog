@@ -8,7 +8,6 @@ import com.jh.simple_blog.service.posts.PostsService;
 import com.jh.simple_blog.service.user.UserService;
 import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
-import com.jh.simple_blog.web.dto.user.UserResponseDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +40,17 @@ public class IndexController {
 			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
 		return "posts-save";
+	}
+
+	@GetMapping("/posts/view/{id}")
+    public String postsView(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+		PostsResponseDto dto = postsService.findById(id);
+		model.addAttribute("post", dto);
+		
+		if(user !=null)
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
+
+        return "posts-view";
 	}
 
 	@GetMapping("/posts/update/{id}")
