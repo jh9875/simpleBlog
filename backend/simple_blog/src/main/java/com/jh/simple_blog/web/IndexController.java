@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
@@ -61,9 +62,15 @@ public class IndexController {
 		return "user";
 	}
 	
-	@GetMapping("/login/with")
-	public String login() {
+	@GetMapping("/sign/in")
+	public String signin() {
 
-		return "login-with";
+		return "sign-in";
 	}
+
+	@GetMapping(value="/sign/out")
+	public String signout() {
+		return "sign-out";
+	}
+	
 }

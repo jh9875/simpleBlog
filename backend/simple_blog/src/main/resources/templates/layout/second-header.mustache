@@ -13,18 +13,18 @@
 						<span id="user">
 							<div class="dropdown">
     							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      								{{usr.name}}</span>
+      								{{usr.name}} 님</span>
     							</button>
     							<div class="dropdown-menu">
       								<a class="dropdown-item" href="/user">유저 홈</a>
 									<a class="dropdown-item" href="/posts/save">글 등록</a>
 									<a class="dropdown-item" href="/user/setting">설정</a>
-      								<a class="dropdown-item" href="/logout">로그아웃</a>
+      								<a class="dropdown-item" href="/sign/out">로그아웃</a>
     							</div>
 							</div>
 					{{/usr}}
 					{{^usr}}
-						<a href="/login/with" role="button" class="btn btn-info active">로그인</a>
+						<a href="/sign/in" role="button" class="btn btn-info active">로그인</a>
          	 	  {{/usr}}
       			</div>
 			</div>
