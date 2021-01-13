@@ -66,7 +66,7 @@ public class IndexController {
 
 	@GetMapping("/user")
 	public String user(Model model, @LoginUser SessionUser user) {
-		List<PostsListResponseDto> userPosts =postsService.findByUser(user.getEmail());
+		List<PostsListResponseDto> userPosts =postsService.findByUserEmail(user.getEmail());
 		model.addAttribute("userPosts", userPosts);
 
 		if(user !=null)

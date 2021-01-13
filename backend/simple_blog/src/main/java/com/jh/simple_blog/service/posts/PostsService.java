@@ -65,7 +65,7 @@ public class PostsService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<PostsListResponseDto> findByUser(String email) {
+	public List<PostsListResponseDto> findByUserEmail(String email) {
 		User user =userRepository.findByEmail(email)
 			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + email));
 		
