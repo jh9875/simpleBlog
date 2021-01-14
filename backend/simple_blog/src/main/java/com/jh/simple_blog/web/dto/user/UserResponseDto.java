@@ -9,6 +9,7 @@ public class UserResponseDto {
 	private Long id;
 	private String name;
 	private String email;
+	private String url;
 	private String picture;
 	
 
@@ -16,6 +17,7 @@ public class UserResponseDto {
 		this.id =entity.getId();
 		this.name =entity.getName();
 		this.email =entity.getEmail();
+		this.url =entity.getUrl();
 		this.picture =entity.getPicture();
 	}
 }

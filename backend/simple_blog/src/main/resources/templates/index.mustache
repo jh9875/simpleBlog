@@ -1,6 +1,14 @@
 {{>layout/header}}
 {{>layout/second-header}}
 	
+	{{#usr}}
+		{{^usr.url}}
+			<script language="javascript">
+				window.location.href= "/user/register";
+			</script>
+		{{/usr.url}}
+	{{/usr}}
+
 	<div class="container">
 		<h1> 전체 글 </h1>
         

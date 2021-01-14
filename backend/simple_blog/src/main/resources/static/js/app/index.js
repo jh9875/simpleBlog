@@ -20,6 +20,10 @@ var main = {
 		$('#btn-user-delete').on('click', function () {
 			_this.userDelete();
 		});
+
+		$('#btn-user-register').on('click', function () {
+			_this.userRegister();
+		});
     },
     postsSave : function () {
         var data = {
@@ -82,6 +86,7 @@ var main = {
 		var data = {
             name: $('#name').val(),
 			email: $('#email').val(),
+			url: $('#url').val(),
 			picture: jQuery("#picture").attr("src")
 		};
 		
@@ -115,6 +120,27 @@ var main = {
     //     });
 	// }
 
+	userRegister : function () {
+		var data = {
+            name: $('#name').val(),
+			email: $('#email').val(),
+			url: $('#url').val(),
+			picture: jQuery("#picture").attr("src")
+		};
+		
+		$.ajax({
+            type: 'PUT',
+            url: '/api/v1/user/register',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('유저가 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+	}
 };
 
 main.init();

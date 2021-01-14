@@ -19,6 +19,11 @@ public class UserApiController {
 		return userService.update(requestDto);
 	}
 
+	@PutMapping("/api/v1/user/register")
+	public Long register(@RequestBody UserUpdateRequestDto requestDto) {
+		return userService.update(requestDto);
+	}
+
 	// @DeleteMapping("/api/v1/user/setting{email}")
 	// public Long delete(@PathVariable String email) {
 	// 	UserResponseDto user = userService.findByEmail(email);

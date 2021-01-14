@@ -20,7 +20,7 @@ public class UserService {
 		User user = userRepository.findByEmail(requestDto.getEmail())
 				.orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다. email =" + requestDto.getEmail()));
 
-		return user.update(requestDto.getName(), requestDto.getPicture()).getId();
+		return user.update(requestDto.getName(), requestDto.getUrl(), requestDto.getPicture()).getId();
 	}
 
 	// @Transactional

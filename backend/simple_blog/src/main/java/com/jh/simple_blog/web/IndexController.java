@@ -8,6 +8,7 @@ import com.jh.simple_blog.service.posts.PostsService;
 import com.jh.simple_blog.service.user.UserService;
 import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
+import com.jh.simple_blog.web.dto.user.UserResponseDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,6 @@ public class IndexController {
 
 		if(user !=null)
 			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
-			
 			
 		return "index";
 	}
@@ -75,6 +75,14 @@ public class IndexController {
 		return "user";
 	}
 
+	@GetMapping("user/register")
+	public String register(Model model, @LoginUser SessionUser user) {
+		if(user !=null)
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
+
+		return "user-register";
+	}
+
 	@GetMapping("user/setting")
 	public String setting(Model model, @LoginUser SessionUser user) {
 		if(user !=null)
@@ -84,13 +92,12 @@ public class IndexController {
 	}
 	
 	@GetMapping("/sign/in")
-	public String signin() {
+	public String signIn() {
 		return "sign-in";
 	}
 
 	@GetMapping(value="/sign/out")
-	public String signout() {
+	public String signOut() {
 		return "sign-out";
 	}
-	
 }
