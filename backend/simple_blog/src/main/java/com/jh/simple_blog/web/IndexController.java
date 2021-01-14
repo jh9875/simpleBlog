@@ -8,7 +8,6 @@ import com.jh.simple_blog.service.posts.PostsService;
 import com.jh.simple_blog.service.user.UserService;
 import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
-import com.jh.simple_blog.web.dto.user.UserResponseDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,16 +33,17 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/posts/save")
+	@GetMapping(value ={"/posts/save"})
 	public String postsSave(Model model, @LoginUser SessionUser user) {
+
 		if(user !=null)
 			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
 		return "posts-save";
 	}
 
-	@GetMapping("/posts/view/{id}")
-    public String postsView(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+	@GetMapping(value ={"/{author}/posts/view/{id}"})
+    public String postsView(@PathVariable String author, @PathVariable Long id, Model model, @LoginUser SessionUser user) {
 		PostsResponseDto dto = postsService.findById(id);
 		model.addAttribute("post", dto);
 		
@@ -53,8 +53,8 @@ public class IndexController {
         return "posts-view";
 	}
 
-	@GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+	@GetMapping(value ={"/{author}/posts/update/{id}"})
+    public String postsUpdate(@PathVariable String author, @PathVariable Long id, Model model, @LoginUser SessionUser user) {
 		PostsResponseDto dto = postsService.findById(id);
 		model.addAttribute("post", dto);
 		
@@ -64,7 +64,7 @@ public class IndexController {
         return "posts-update";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/me")
 	public String user(Model model, @LoginUser SessionUser user) {
 		List<PostsListResponseDto> userPosts =postsService.findByUserEmail(user.getEmail());
 		model.addAttribute("userPosts", userPosts);
@@ -75,20 +75,20 @@ public class IndexController {
 		return "user";
 	}
 
-	@GetMapping("user/register")
-	public String register(Model model, @LoginUser SessionUser user) {
-		if(user !=null)
-			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
-
-		return "user-register";
-	}
-
-	@GetMapping("user/setting")
+	@GetMapping("me/setting")
 	public String setting(Model model, @LoginUser SessionUser user) {
 		if(user !=null)
 			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
 
 		return "user-setting";
+	}
+
+	@GetMapping("me/register")
+	public String register(Model model, @LoginUser SessionUser user) {
+		if(user !=null)
+			model.addAttribute("usr", userService.findByEmail(user.getEmail()));
+
+		return "user-register";
 	}
 	
 	@GetMapping("/sign/in")

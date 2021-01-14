@@ -36,7 +36,7 @@ public class User extends BaseTimeEntity {
 	private String email;
 
 	@Column
-	private String url;
+	private String author;
 
 	@Column
 	private String picture;
@@ -56,9 +56,9 @@ public class User extends BaseTimeEntity {
 		this.role =role;
 	}
 
-	public User update(String name, String url, String picture) {
+	public User update(String name, String author, String picture) {
 		this.name =name;
-		this.url =url;
+		this.author =author;
 		this.picture =picture;
 
 		return this;

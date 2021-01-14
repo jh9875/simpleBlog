@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 public class UserUpdateRequestDto {
 	private String name;
 	private String email;
-	private String url;
+	private String author;
 	private String picture;
 	
 	@Builder
-	public UserUpdateRequestDto(String name, String email, String url, String picture) {
+	public UserUpdateRequestDto(String name, String email, String author, String picture) {
 		this.name =name;
 		this.email =email;
-		this.url =url;
+		this.author =author;
 		this.picture =picture;
 	}
 }

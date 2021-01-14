@@ -19,8 +19,8 @@
             {{#userPosts}}
                 <tr>
                     <td>{{id}}</td>
-                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                    <td>{{user.email}}</td>
+                    <td><a href="/{{user.author}}/posts/update/{{id}}">{{title}}</a></td>
+                    <td>{{user.author}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
             {{/userPosts}}

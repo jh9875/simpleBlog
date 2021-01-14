@@ -29,12 +29,13 @@ var main = {
         var data = {
             title: $('#title').val(),
 			content: $('#content').val(),
-			email: $('#author').val()
+			email: $('#email').val()
 		};
+		var author = $('#author').val();
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/posts',
+            url: '/api/v1/'+author+'/posts',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -51,11 +52,12 @@ var main = {
             content: $('#content').val()
         };
 
-        var id = $('#id').val();
+		var id = $('#id').val();
+		var author = $('#author').val();
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/'+author+'/posts/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -67,11 +69,12 @@ var main = {
         });
     },
     postsDelete : function () {
-        var id = $('#id').val();
+		var id = $('#id').val();
+		var author = $('#author').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/'+author+'/posts/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
@@ -86,13 +89,13 @@ var main = {
 		var data = {
             name: $('#name').val(),
 			email: $('#email').val(),
-			url: $('#url').val(),
+			author: $('#author').val(),
 			picture: jQuery("#picture").attr("src")
 		};
 		
 		$.ajax({
             type: 'PUT',
-            url: '/api/v1/user/setting',
+            url: '/api/v1/me/setting',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -124,13 +127,13 @@ var main = {
 		var data = {
             name: $('#name').val(),
 			email: $('#email').val(),
-			url: $('#url').val(),
+			author: $('#author').val(),
 			picture: jQuery("#picture").attr("src")
 		};
 		
 		$.ajax({
             type: 'PUT',
-            url: '/api/v1/user/register',
+            url: '/api/v1/me/register',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)

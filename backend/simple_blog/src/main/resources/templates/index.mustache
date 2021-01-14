@@ -2,11 +2,11 @@
 {{>layout/second-header}}
 	
 	{{#usr}}
-		{{^usr.url}}
+		{{^usr.author}}
 			<script language="javascript">
-				window.location.href= "/user/register";
+				window.location.href= "/me/register";
 			</script>
-		{{/usr.url}}
+		{{/usr.author}}
 	{{/usr}}
 
 	<div class="container">
@@ -26,8 +26,8 @@
             {{#posts}}
                 <tr>
                     <td>{{id}}</td>
-                    <td><a href="/posts/view/{{id}}">{{title}}</a></td>
-                    <td>{{user.email}}</td>
+                    <td><a href="/{{user.author}}/posts/view/{{id}}">{{title}}</a></td>
+                    <td>{{user.author}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
             {{/posts}}

@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 public class UserApiController {
 	private final UserService userService;
 
-	@PutMapping("/api/v1/user/setting")
+	@PutMapping("/api/v1/me/setting")
 	public Long update(@RequestBody UserUpdateRequestDto requestDto) {
 		return userService.update(requestDto);
 	}
 
-	@PutMapping("/api/v1/user/register")
+	@PutMapping("/api/v1/me/register")
 	public Long register(@RequestBody UserUpdateRequestDto requestDto) {
 		return userService.update(requestDto);
 	}

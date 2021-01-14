@@ -23,8 +23,9 @@ import lombok.RequiredArgsConstructor;
 public class PostsApiController {
 	private final PostsService postsService;
 
-	@PostMapping("/api/v1/posts")
-	public Long save(@RequestBody PostsSaveRequestDto requestDto) {
+	@PostMapping("/api/v1/{author}/posts")
+	public Long save(@PathVariable String author, @RequestBody PostsSaveRequestDto requestDto) {
+		System.out.println("author: " +author);
 		return postsService.save(requestDto);
 	}
 
