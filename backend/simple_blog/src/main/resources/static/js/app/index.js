@@ -24,14 +24,36 @@ var main = {
 		$('#btn-user-register').on('click', function () {
 			_this.userRegister();
 		});
+		
+
+		//test
+		$('#btnUpload').on('click', function() {
+			_this.upload();
+		})
     },
     postsSave : function () {
         var data = {
             title: $('#title').val(),
 			content: $('#content').val(),
-			email: $('#email').val()
+			email: $('#email').val(),
+			image: $('#image').val()
 		};
 		var author = $('#author').val();
+
+		//수정 필요
+		// var form =$('#form')[0];
+		// var formData =new FormData(form);
+		// console.log(form);
+		// console.log(formData);
+		// console.log(typeof(form));
+		
+		// var image =$('#image').val();
+		// var aa =$('#email').val();
+		// alert(typeof(image));
+		// alert(typeof(aa));
+		// console.log(image);
+		// alert(image);
+		
 
         $.ajax({
             type: 'POST',
@@ -143,6 +165,39 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+	},
+
+	//수정 필요.
+	upload : function (event) {
+		event.preventDefault();
+
+		var form = $('#uploadForm')[0]
+		var formData = new FormData(form);
+
+		// console.log(form);
+		console.log(data);
+    
+		$('#btnUpload').prop('disabled', true);
+	
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/api/v1/upload",
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$('#btnUpload').prop('disabled', false);
+        	alert('success')
+        },
+        error: function (e) {
+			console.log("ERROE: ", e);
+            $('#btnUpload').prop('disabled', false);
+            alert('fail');
+        }
+    });
 	}
 };
 

@@ -31,3 +31,11 @@
 		</div>
 	</div>
 	<br><br><br>
+
+	{{#usr}}
+		{{^usr.author}}
+			<script language="javascript">
+				window.location.href= "/me/register";
+			</script>
+		{{/usr.author}}
+	{{/usr}}

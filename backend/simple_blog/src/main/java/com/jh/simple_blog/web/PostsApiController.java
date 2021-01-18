@@ -25,7 +25,6 @@ public class PostsApiController {
 
 	@PostMapping("/api/v1/{author}/posts")
 	public Long save(@PathVariable String author, @RequestBody PostsSaveRequestDto requestDto) {
-		System.out.println("author: " +author);
 		return postsService.save(requestDto);
 	}
 
