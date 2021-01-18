@@ -1,5 +1,6 @@
 package com.jh.simple_blog.web.dto.posts;
 
+import com.jh.simple_blog.domain.file.File;
 import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.user.User;
 
@@ -13,6 +14,7 @@ public class PostsSaveRequestDto {
 	private String title;
 	private String content;
 	private String email;
+	private File file;
 	private User user;
 
 	@Builder
@@ -27,6 +29,10 @@ public class PostsSaveRequestDto {
 	}
 
 	public Posts toEntity() {
-		return Posts.builder().title(title).content(content).user(user).build();
+		return Posts.builder()
+				.title(title)
+				.content(content)
+				.user(user)
+				.build();
 	}
 }

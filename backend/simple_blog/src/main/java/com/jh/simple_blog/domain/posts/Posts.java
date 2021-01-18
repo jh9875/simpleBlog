@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.jh.simple_blog.domain.BaseTimeEntity;
+import com.jh.simple_blog.domain.file.File;
 import com.jh.simple_blog.domain.user.User;
 
 import lombok.Builder;
@@ -29,19 +31,25 @@ public class Posts extends BaseTimeEntity {
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
 
+	@OneToOne
+	@JoinColumn(name="file_id")
+	private File file;
+
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 
 	@Builder
-	public Posts(String title, String content, User user) {
+	public Posts(String title, String content, File file, User user) {
 		this.title = title;
 		this.content = content;
+		this.file =file;
 		this.user =user;
 	}
 
-	public void update(String title, String content) {
+	public void update(String title, String content, File file) {
 		this.title = title;
 		this.content = content;
+		this.file =file;
 	}
 }

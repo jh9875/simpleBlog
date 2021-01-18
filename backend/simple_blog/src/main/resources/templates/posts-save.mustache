@@ -2,44 +2,40 @@
 {{>layout/second-header}}
 
 <div class="container">
-<div class="col-md-12">
 	<h1>게시글 등록</h1>
 
-    <div class="col-md-4">
         <form enctype="multipart/form-data" id="form">
-            <div class="form-group row mb-4">
-                <label for="title">제목</label>
-				<div class="col-sm-12 col-md-10">
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label"><strong> 제목 </strong></label>
+				<div class="col-sm-10">
                 	<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
 				</div>
             </div> 
-			<div class="form-group row mb-4">
-                <label for="email"> email </label>
-				<div class="col-sm-12 col-md-10">
+			<div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label"><strong> email </strong></label>
+				<div class="col-sm-10">
                 	<input type="text" class="form-control" id="email" value="{{usr.email}}" readonly>
 				</div>
             </div>
-			<div class="form-group row mb-4">
-                <label for="author"> 작성자 </label>
-				<div class="col-sm-12 col-md-10">
+			<div class="form-group row">
+                <label for="author" class="col-sm-2 col-form-label"><strong> 작성자 </strong></label>
+				<div class="col-sm-10">
                 	<input type="text" class="form-control" id="author" value="{{usr.author}}" readonly>
 				</div>
             </div>
-			<div class="form-group row mb-4">
-				<label for="image"> 이미지 업로드 </label>
-                <div class="col-sm-12 col-md-7">
-                    <input type="file" name="image" id="image">
+			<div class="form-group row">
+				<label for="file" class="col-sm-2 col-form-label"><strong> 파일 업로드 </strong></label>
+                <div class="col-sm-10">
+                    <input type="file" name="file" id="file">
                 </div>
 			</div>
-            <div class="form-group row mb-4">
-                <label for="content"> 내용 </label>
+            <div class="form-group row">
+                <label for="content" class="col-sm-2 col-form-label"><strong> 내용 </strong></label>
                 <textarea class="form-control" id="content" cols="30" rows="10"  placeholder="내용을 입력하세요"></textarea>
             </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-posts-save">등록</button>
-    </div>
-</div>
 </div>
 
 {{>layout/footer}}

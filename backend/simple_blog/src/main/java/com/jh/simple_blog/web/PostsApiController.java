@@ -1,8 +1,11 @@
 package com.jh.simple_blog.web;
 
+import java.io.File;
 import java.util.List;
 
 import com.jh.simple_blog.service.posts.PostsService;
+import com.jh.simple_blog.util.MD5Generator;
+import com.jh.simple_blog.web.dto.file.FileSaveRequestDto;
 import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsSaveRequestDto;
@@ -14,7 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +31,28 @@ public class PostsApiController {
 
 	@PostMapping("/api/v1/{author}/posts")
 	public Long save(@PathVariable String author, @RequestBody PostsSaveRequestDto requestDto) {
+		//수정 필요.
+		// try {
+		// 	String origFileName =files.getOriginalFilename();
+		// 	String fileName =new MD5Generator(origFileName).toString();
+		// 	String savePath =System.getProperty("user.dir") +"\\files";
+		// 	if(!new File(savePath).exists()) {
+		// 		try {
+		// 			new File(savePath).mkdir();
+		// 		}
+		// 		catch(Exception e) {
+		// 			e.getStackTrace();
+		// 		}
+		// 	}
+		// 	String filePath =savePath + "\\" + fileName;
+		// 	files.transferTo(new File(filePath));
+
+		// 	FileSaveRequestDto fileSaveRequestDto =new FileSaveRequestDto(origFileName, fileName, filePath);
+		// }
+		// catch(Exception e) {
+		// 	e.printStackTrace();
+		// }
+
 		return postsService.save(requestDto);
 	}
 
