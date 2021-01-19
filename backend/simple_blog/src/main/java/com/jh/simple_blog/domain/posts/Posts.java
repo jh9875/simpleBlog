@@ -2,6 +2,7 @@ package com.jh.simple_blog.domain.posts;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +32,7 @@ public class Posts extends BaseTimeEntity {
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
 
-	@OneToOne
-	@JoinColumn(name="file_id")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "posts")
 	private File file;
 
 	@ManyToOne

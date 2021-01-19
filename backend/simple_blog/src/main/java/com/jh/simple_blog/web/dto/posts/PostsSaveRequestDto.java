@@ -14,7 +14,7 @@ public class PostsSaveRequestDto {
 	private String title;
 	private String content;
 	private String email;
-	private File file;
+	// private File file;
 	private User user;
 
 	@Builder
@@ -27,6 +27,9 @@ public class PostsSaveRequestDto {
 	public void setUser(User user) {
 		this.user =user;
 	}
+	// public void setFile(File file) {
+	// 	this.file =file;
+	// }
 
 	public Posts toEntity() {
 		return Posts.builder()

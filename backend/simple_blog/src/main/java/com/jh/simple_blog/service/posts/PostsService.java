@@ -3,6 +3,8 @@ package com.jh.simple_blog.service.posts;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.jh.simple_blog.domain.file.File;
+import com.jh.simple_blog.domain.file.FileRepository;
 import com.jh.simple_blog.domain.posts.Posts;
 import com.jh.simple_blog.domain.posts.PostsRepository;
 import com.jh.simple_blog.domain.user.User;
@@ -22,12 +24,17 @@ import lombok.RequiredArgsConstructor;
 public class PostsService {
 	private final PostsRepository postsRepository;
 	private final UserRepository userRepository;
+	// private final FileRepository fileRepository;
 
 	@Transactional
 	public Long save(PostsSaveRequestDto requestDto) {
 		User user =userRepository.findByEmail(requestDto.getEmail())
 			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + requestDto.getEmail()));
 		requestDto.setUser(user);
+
+		// File file =fileRepository.findByFileName(requestDto.getFile().getFileName())
+		// 	.orElseThrow(() -> new IllegalArgumentException("잘못된 파일입니다.. fileName =" + requestDto.getFile().getFileName()));
+		// requestDto.setFile(file);
 
 		return postsRepository.save(requestDto.toEntity()).getId();
 	}

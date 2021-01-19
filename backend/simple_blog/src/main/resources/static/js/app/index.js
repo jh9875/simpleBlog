@@ -32,25 +32,38 @@ var main = {
 		})
     },
     postsSave : function () {
-        var data = {
+		var data = {
             title: $('#title').val(),
 			content: $('#content').val(),
 			email: $('#email').val()
 		};
-		var author = $('#author').val();	
+		var author = $('#author').val();
+		var form =$('#form')[0];
+		var formData = new FormData(form);
+		formData.append('file', $('#file'));
+		formData.append('key', new Blob([JSON.stringify(data)] , {type: "application/json"}));
 
-        $.ajax({
+		// for(var key of formData.keys()) {
+		// 	console.log(key);
+		// }
+		// console.log('---------------');
+		// for(var value of formData.values()) {
+		// 	console.log(value);
+		// }
+		// console.log('---------------');
+		
+		$.ajax({
             type: 'POST',
             url: '/api/v1/'+author+'/posts',
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            processData: false,
+            contentType:false,
+            data: formData,
         }).done(function() {
             alert('글이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
-        });
+		});
     },
     postsUpdate : function () {
         var data = {
