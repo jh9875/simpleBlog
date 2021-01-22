@@ -24,17 +24,19 @@ import lombok.RequiredArgsConstructor;
 public class PostsService {
 	private final PostsRepository postsRepository;
 	private final UserRepository userRepository;
-	// private final FileRepository fileRepository;
+	private final FileRepository fileRepository;
 
 	@Transactional
-	public Long save(PostsSaveRequestDto requestDto) {
+	public Long save(PostsSaveRequestDto requestDto, Long fileId) {
 		User user =userRepository.findByEmail(requestDto.getEmail())
-			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + requestDto.getEmail()));
+			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다. email =" + requestDto.getEmail()));
 		requestDto.setUser(user);
 
-		// File file =fileRepository.findByFileName(requestDto.getFile().getFileName())
-		// 	.orElseThrow(() -> new IllegalArgumentException("잘못된 파일입니다.. fileName =" + requestDto.getFile().getFileName()));
-		// requestDto.setFile(file);
+		if(fileId !=null) {
+			File file =fileRepository.findById(fileId)
+				.orElseThrow(() -> new IllegalArgumentException("잘못된 파일입니다. fileId: " + fileId));
+			requestDto.setFile(file);
+		}
 
 		return postsRepository.save(requestDto.toEntity()).getId();
 	}

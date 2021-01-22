@@ -32,7 +32,8 @@ public class Posts extends BaseTimeEntity {
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "posts")
+	@OneToOne
+	@JoinColumn(name="file_id")
 	private File file;
 
 	@ManyToOne

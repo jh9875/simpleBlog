@@ -11,6 +11,7 @@
                 <th>게시글번호</th>
                 <th>제목</th>
                 <th>작성자</th>
+				<th>이미지</th>
                 <th>최종수정일</th>
             </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <td>{{id}}</td>
                     <td><a href="/{{user.author}}/posts/view/{{id}}">{{title}}</a></td>
                     <td>{{user.author}}</td>
+					<td><img src ="/posts-image/{{file.fileName}}" style="width:300px;height:300px"></td>
                     <td>{{modifiedDate}}</td>
                 </tr>
             {{/posts}}

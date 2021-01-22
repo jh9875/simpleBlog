@@ -7,6 +7,9 @@ build/
 
 application-oauth.properties
 
+### posts-image ###
+src/main/resources/static/posts-image
+
 ### STS ###
 .apt_generated
 .classpath

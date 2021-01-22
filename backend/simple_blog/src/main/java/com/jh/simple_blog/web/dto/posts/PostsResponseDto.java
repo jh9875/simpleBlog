@@ -11,14 +11,14 @@ public class PostsResponseDto {
 	private Long id;
 	private String title;
 	private String content;
-	// private File file;
+	private File file;
 	private User user;
 
 	public PostsResponseDto(Posts entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.content = entity.getContent();
-		// this.file =entity.getFile();
+		this.file =entity.getFile();
 		this.user =entity.getUser();
 	}
 

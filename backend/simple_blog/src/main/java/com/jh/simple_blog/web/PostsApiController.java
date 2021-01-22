@@ -35,12 +35,12 @@ public class PostsApiController {
 		@RequestPart(value = "key") PostsSaveRequestDto requestDto,
 		@RequestPart(value = "file") MultipartFile file) {
 		
-		FileSaveRequestDto fileSaveRequestDto;
-		//수정 필요.
+		FileSaveRequestDto fileSaveRequestDto =null;
+		Long fileId =null;
 		try {
 			String origFileName =file.getOriginalFilename();
 			String fileName =new MD5Generator(origFileName).toString();
-			String savePath =System.getProperty("user.dir") +"\\file";
+			String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
 			if(!new File(savePath).exists()) {
 				try {
 					new File(savePath).mkdir();
@@ -54,13 +54,14 @@ public class PostsApiController {
 
 			fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
 				.fileName(fileName).filePath(filePath).build();
-			fileService.saveFile(fileSaveRequestDto);
+			
+			fileId =fileService.saveFile(fileSaveRequestDto);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		return postsService.save(requestDto);
+
+		return postsService.save(requestDto, fileId);
 	}
 
 	@PutMapping("/api/v1/posts/{id}")

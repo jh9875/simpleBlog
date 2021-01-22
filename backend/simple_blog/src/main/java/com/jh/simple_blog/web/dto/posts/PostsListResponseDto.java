@@ -12,14 +12,14 @@ import lombok.Getter;
 public class PostsListResponseDto {
     private Long id;
 	private String title;
-	// private File file;
+	private File file;
 	private User user;
     private LocalDateTime modifiedDate;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
 		this.title = entity.getTitle();
-		// this.file =entity.getFile();
+		this.file =entity.getFile();
 		this.user =entity.getUser();
         this.modifiedDate = entity.getModifiedDate();
     }

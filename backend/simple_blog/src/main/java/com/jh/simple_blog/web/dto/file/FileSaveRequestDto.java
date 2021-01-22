@@ -1,6 +1,7 @@
 package com.jh.simple_blog.web.dto.file;
 
 import com.jh.simple_blog.domain.file.File;
+import com.jh.simple_blog.domain.posts.Posts;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class FileSaveRequestDto {
 		this.fileName =fileName;
 		this.filePath =filePath;
 	}
-
+	
 	public File toEntity() {
 		return File.builder()
 				.origFileName(origFileName)
