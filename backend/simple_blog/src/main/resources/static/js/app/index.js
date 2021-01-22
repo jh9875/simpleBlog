@@ -42,15 +42,6 @@ var main = {
 		var formData = new FormData(form);
 		formData.append('file', $('#file'));
 		formData.append('key', new Blob([JSON.stringify(data)] , {type: "application/json"}));
-
-		// for(var key of formData.keys()) {
-		// 	console.log(key);
-		// }
-		// console.log('---------------');
-		// for(var value of formData.values()) {
-		// 	console.log(value);
-		// }
-		// console.log('---------------');
 		
 		$.ajax({
             type: 'POST',

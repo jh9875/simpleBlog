@@ -1,7 +1,6 @@
 package com.jh.simple_blog.web.dto.file;
 
 import com.jh.simple_blog.domain.file.File;
-import com.jh.simple_blog.domain.posts.Posts;
 
 import lombok.Builder;
 import lombok.Getter;
