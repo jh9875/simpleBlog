@@ -2,30 +2,40 @@
 {{>layout/second-header}}
 	
 	<div class="container">
-	<h1>{{usr.name}} 님의 글</h1>
+		<h1>{{usr.name}} 님의 글</h1>
 
-	<div class="col-md-12">
-        
-        <table class="table table-horizontal table-bordered">
-            <thead class="thead-strong">
-            <tr>
-                <th>게시글번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>최종수정일</th>
-            </tr>
-            </thead>
-            <tbody id="tbody">
-            {{#userPosts}}
-                <tr>
-                    <td>{{id}}</td>
-                    <td><a href="/{{user.author}}/posts/update/{{id}}">{{title}}</a></td>
-                    <td>{{user.author}}</td>
-                    <td>{{modifiedDate}}</td>
-                </tr>
-            {{/userPosts}}
-            </tbody>
-        </table>
-    </div>
+		<!-- 유저의 글들 -->
+		<br>
+		<div class="row">
+			{{#userPosts}}
+				<a href="/{{user.author}}/posts/update/{{id}}">
+					<div class="card-deck">
+						<div class ="col-md-4">
+							<div class="card" style="width:250px;height:200px;">
+								{{#file}}
+									<img class ="card-img-top" src="/posts-image/{{file.fileName}}" style="width:250px;height:100px;">
+
+									<div class="card-body" style="width:250px;height:50px;">
+										<h5 class="card-title">{{title}}</h5>
+									</div>
+								{{/file}}
+								{{^file}}
+									<div class="card-body" style="width:250px;height:150px;">
+										<h5 class="card-title">{{title}}</h5>
+									</div>
+								{{/file}}
+
+								<div class="card-footer" style="width:250px;height:50px;">
+									<small class="text-muted">by <strong>{{user.author}}</strong></small>
+								</div>
+
+							</div>
+							<br><br><br>
+						</div>
+					</div>
+				</a>
+			{{/userPosts}}
+		</div>
+
 	</div>
 {{>layout/footer}}

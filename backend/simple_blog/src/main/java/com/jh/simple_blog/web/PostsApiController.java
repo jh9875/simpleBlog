@@ -34,32 +34,34 @@ public class PostsApiController {
 	public Long save(@PathVariable String author,
 		@RequestPart(value = "key") PostsSaveRequestDto requestDto,
 		@RequestPart(value = "file") MultipartFile file) {
-		
+
 		FileSaveRequestDto fileSaveRequestDto =null;
 		Long fileId =null;
-		try {
-			String origFileName =file.getOriginalFilename();
-			String fileName =new MD5Generator(origFileName).toString();
-			String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
-			if(!new File(savePath).exists()) {
-				try {
-					new File(savePath).mkdir();
+		if(!file.getOriginalFilename().equals("")) {
+			try {
+				String origFileName =file.getOriginalFilename();
+				String fileName =new MD5Generator(origFileName).toString();
+				String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
+				if(!new File(savePath).exists()) {
+					try {
+						new File(savePath).mkdir();
+					}
+					catch(Exception e) {
+						e.getStackTrace();
+					}
 				}
-				catch(Exception e) {
-					e.getStackTrace();
-				}
+				String filePath =savePath + "\\" + fileName;
+				file.transferTo(new File(filePath));
+	
+				fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
+					.fileName(fileName).filePath(filePath).build();
+				
+				fileId =fileService.saveFile(fileSaveRequestDto);
 			}
-			String filePath =savePath + "\\" + fileName;
-			file.transferTo(new File(filePath));
-
-			fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
-				.fileName(fileName).filePath(filePath).build();
-			
-			fileId =fileService.saveFile(fileSaveRequestDto);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}	
 
 		return postsService.save(requestDto, fileId);
 	}
