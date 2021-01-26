@@ -66,9 +66,40 @@ public class PostsApiController {
 		return postsService.save(requestDto, fileId);
 	}
 
-	@PutMapping("/api/v1/posts/{id}")
-    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
-        return postsService.update(id, requestDto);
+	@PutMapping("/api/v1/{author}/posts/{id}")
+	public Long update(@PathVariable String author, @PathVariable Long id,
+		@RequestPart(value = "key") PostsUpdateRequestDto requestDto,
+		@RequestPart(value = "file") MultipartFile file) {
+
+		FileSaveRequestDto fileSaveRequestDto =null;
+		Long fileId =null;
+		if(!file.getOriginalFilename().equals("")) {
+			try {
+				String origFileName =file.getOriginalFilename();
+				String fileName =new MD5Generator(origFileName).toString();
+				String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
+				if(!new File(savePath).exists()) {
+					try {
+						new File(savePath).mkdir();
+					}
+					catch(Exception e) {
+						e.getStackTrace();
+					}
+				}
+				String filePath =savePath + "\\" + fileName;
+				file.transferTo(new File(filePath));
+	
+				fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
+					.fileName(fileName).filePath(filePath).build();
+				
+				fileId =fileService.saveFile(fileSaveRequestDto);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}	
+
+		return postsService.update(id, requestDto, fileId);
     }
 
 	@DeleteMapping("/api/v1/posts/{id}")

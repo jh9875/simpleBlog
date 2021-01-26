@@ -61,16 +61,18 @@ var main = {
             title: $('#title').val(),
             content: $('#content').val()
         };
-
 		var id = $('#id').val();
 		var author = $('#author').val();
+		var formData = new FormData(form);
+		formData.append('file', $('#file'));
+		formData.append('key', new Blob([JSON.stringify(data)] , {type: "application/json"}));
 
         $.ajax({
             type: 'PUT',
             url: '/api/v1/'+author+'/posts/'+id,
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            processData: false,
+            contentType:false,
+            data: formData,
         }).done(function() {
             alert('글이 수정되었습니다.');
             window.location.href = '/';

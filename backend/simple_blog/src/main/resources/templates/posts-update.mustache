@@ -1,32 +1,51 @@
 {{>layout/header}}
 {{>layout/second-header}}
 
-<div class="col-md-12">
+<div class="container">
 	<h1>게시글 수정</h1>
 
-    <div class="col-md-4">
-        <form>
-            <div class="form-group">
-                <label for="title">글 번호</label>
-                <input type="text" class="form-control" id="id" value="{{post.id}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{post.title}}">
-            </div>
-            <div class="form-group">
-                <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" value="{{post.user.author}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content">{{post.content}}</textarea>
-            </div>
-        </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-posts-update">수정 완료</button>
-        <button type="button" class="btn btn-danger" id="btn-posts-delete">삭제</button>
-    </div>
+	<form enctype="multipart/form-data" id="form">
+		<div class="form-group row">
+			<label for="title" class="col-sm-2 col-form-label"><strong> 글 번호 </strong></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="id" value="{{post.id}}" readonly>
+			</div>
+        </div>
+		<div class="form-group row">
+			<label for="title" class="col-sm-2 col-form-label"><strong> 제목 </strong></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="title" value="{{post.title}}">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="author" class="col-sm-2 col-form-label"><strong> 작성자 </strong></label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="author" value="{{post.user.author}}" readonly>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="file" class="col-sm-2 col-form-label"><strong> 파일 업로드 </strong></label>
+			<div class="col-sm-10">
+				{{#post.file}}
+					<img class ="form-image" src="/posts-image/{{post.file.fileName}}" style="width:250px;height:100px;">
+				{{/post.file}}
+				{{^post.file}}
+
+				{{/post.file}}
+				
+				<input type="file" name="file" id="file">
+			</div>
+		</div>
+			
+		<div class="form-group row">
+			<label for="content" class="col-sm-2 col-form-label"><strong> 내용 </strong></label>
+			<textarea class="form-control" id="content" cols="30" rows="10">{{post.content}}</textarea>
+		</div>
+	</form>
+	<a href="/" role="button" class="btn btn-secondary">취소</a>
+	<button type="button" class="btn btn-primary" id="btn-posts-update">수정 완료</button>
+	<button type="button" class="btn btn-danger" id="btn-posts-delete">삭제</button>
+
 </div>
 
 {{>layout/footer}}

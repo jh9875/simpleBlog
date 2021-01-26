@@ -42,9 +42,15 @@ public class PostsService {
 	}
 
 	@Transactional
-	public Long update(Long id, PostsUpdateRequestDto requestDto) {
+	public Long update(Long id, PostsUpdateRequestDto requestDto, Long fileId) {
 		Posts posts = postsRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id =" + id));
+
+		if(fileId !=null) {
+			File file =fileRepository.findById(fileId)
+				.orElseThrow(() -> new IllegalArgumentException("잘못된 파일입니다. fileId: " + fileId));
+			requestDto.setFile(file);
+		}
 
 		posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getFile());
 
@@ -78,7 +84,7 @@ public class PostsService {
 		User user =userRepository.findByEmail(email)
 			.orElseThrow(() -> new IllegalArgumentException("잘못된 사용자입니다.. email =" + email));
 		
-		return postsRepository.findByUser(user).stream()
+		return postsRepository.findByUserIdDesc(user.getId()).stream()
 			.map(PostsListResponseDto::new)
 			.collect(Collectors.toList());
 	}

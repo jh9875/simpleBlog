@@ -19,4 +19,8 @@ public class PostsUpdateRequestDto {
 		this.content = content;
 		this.file =file;
 	}
+
+	public void setFile(File file) {
+		this.file =file;
+	}
 }
