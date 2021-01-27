@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -102,8 +101,8 @@ public class PostsApiController {
 		return postsService.update(id, requestDto, fileId);
     }
 
-	@DeleteMapping("/api/v1/posts/{id}")
-	public Long delete(@PathVariable Long id) {
+	@DeleteMapping("/api/v1/{author}/posts/{id}")
+	public Long delete(@PathVariable String author, @PathVariable Long id) {
 		postsService.delete(id);
 		return id;
 	}
