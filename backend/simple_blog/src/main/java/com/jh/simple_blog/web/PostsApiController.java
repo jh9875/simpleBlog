@@ -1,11 +1,10 @@
 package com.jh.simple_blog.web;
 
-import java.io.File;
 import java.util.List;
 
 import com.jh.simple_blog.service.file.FileService;
 import com.jh.simple_blog.service.posts.PostsService;
-import com.jh.simple_blog.util.MD5Generator;
+import com.jh.simple_blog.util.FileGenerator;
 import com.jh.simple_blog.web.dto.file.FileSaveRequestDto;
 import com.jh.simple_blog.web.dto.posts.PostsListResponseDto;
 import com.jh.simple_blog.web.dto.posts.PostsResponseDto;
@@ -34,33 +33,11 @@ public class PostsApiController {
 		@RequestPart(value = "key") PostsSaveRequestDto requestDto,
 		@RequestPart(value = "file") MultipartFile file) {
 
-		FileSaveRequestDto fileSaveRequestDto =null;
+		FileGenerator fileGenerator =new FileGenerator(file);
+		FileSaveRequestDto fileSaveRequestDto =fileGenerator.getFileSaveRequestDto();	
 		Long fileId =null;
-		if(!file.getOriginalFilename().equals("")) {
-			try {
-				String origFileName =file.getOriginalFilename();
-				String fileName =new MD5Generator(origFileName).toString();
-				String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
-				if(!new File(savePath).exists()) {
-					try {
-						new File(savePath).mkdir();
-					}
-					catch(Exception e) {
-						e.getStackTrace();
-					}
-				}
-				String filePath =savePath + "\\" + fileName;
-				file.transferTo(new File(filePath));
-	
-				fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
-					.fileName(fileName).filePath(filePath).build();
-				
-				fileId =fileService.saveFile(fileSaveRequestDto);
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-		}	
+		if(fileSaveRequestDto !=null)
+			fileId =fileService.saveFile(fileSaveRequestDto);
 
 		return postsService.save(requestDto, fileId);
 	}
@@ -70,33 +47,11 @@ public class PostsApiController {
 		@RequestPart(value = "key") PostsUpdateRequestDto requestDto,
 		@RequestPart(value = "file") MultipartFile file) {
 
-		FileSaveRequestDto fileSaveRequestDto =null;
+		FileGenerator fileGenerator =new FileGenerator(file);
+		FileSaveRequestDto fileSaveRequestDto =fileGenerator.getFileSaveRequestDto();	
 		Long fileId =null;
-		if(!file.getOriginalFilename().equals("")) {
-			try {
-				String origFileName =file.getOriginalFilename();
-				String fileName =new MD5Generator(origFileName).toString();
-				String savePath =System.getProperty("user.dir") +"\\src/main/resources/static/posts-image";
-				if(!new File(savePath).exists()) {
-					try {
-						new File(savePath).mkdir();
-					}
-					catch(Exception e) {
-						e.getStackTrace();
-					}
-				}
-				String filePath =savePath + "\\" + fileName;
-				file.transferTo(new File(filePath));
-	
-				fileSaveRequestDto =FileSaveRequestDto.builder().origFileName(origFileName)
-					.fileName(fileName).filePath(filePath).build();
-				
-				fileId =fileService.saveFile(fileSaveRequestDto);
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-		}	
+		if(fileSaveRequestDto !=null)
+			fileId =fileService.saveFile(fileSaveRequestDto);
 
 		return postsService.update(id, requestDto, fileId);
     }

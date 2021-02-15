@@ -115,7 +115,8 @@ var main = {
             alert('유저가 수정되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            // alert(JSON.stringify(error));
+			alert('author가 중복되었습니다.');
         });
 	},
 
