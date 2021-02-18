@@ -1,3 +1,17 @@
-# simpleBlog
+simpleBlog
+==========
 
-## 아직 개발중입니다.
+### 소개
+
+아주 심플한 글쓰기 플랫폼
+
+<!-- ~~블로그 플랫폼을 따라해보려 했으나 따라하기엔 무리.. 연습좀 해야겠다~~ -->
+
+
+### 기술 스택
+
+- **BackEnd** : `Java` `Spring Boot`
+- **FrontEnd** : `HTML / CSS / JavaScript`
+- **Database** : `MariaDB`
+- **Build** : `Gradle`
+- **Deploy** : `AWS`
