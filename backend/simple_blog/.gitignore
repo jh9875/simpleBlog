@@ -9,6 +9,7 @@ application-oauth.properties
 
 ### posts-image ###
 src/main/resources/static/posts-image
+posts-image
 
 ### STS ###
 .apt_generated
