@@ -18,7 +18,7 @@ public class FileGenerator {
 			try {
 				String origFileName =file.getOriginalFilename();
 				String fileName =new MD5Generator(origFileName).toString();
-				String savePath =System.getProperty("user.dir") +"\\posts-image";
+				String savePath =System.getProperty("user.dir") +"/posts-image";
 				if(!new File(savePath).exists()) {
 					try {
 						new File(savePath).mkdir();
